@@ -45,7 +45,7 @@ export function Footer() {
             </h4>
             <div className="flex flex-col items-center md:items-start gap-3.5 text-sm text-[#C4B4A4]">
               <a 
-                href="https://www.instagram.com/theohi.hyd" 
+                href="https://www.instagram.com/theoh.hyd" 
                 target="_blank" 
                 rel="noreferrer" 
                 className="flex items-center gap-2.5 hover:text-white transition-colors group"
@@ -53,13 +53,13 @@ export function Footer() {
                 <span className="p-2 rounded-full bg-[#4E341A] group-hover:bg-theoh-orange group-hover:text-white transition-colors">
                   <Instagram size={15} />
                 </span>
-                <span>@theohi.hyd on Instagram</span>
+                <span>@theoh.hyd on Instagram</span>
               </a>
               <div className="flex items-center gap-2.5">
                 <span className="p-2 rounded-full bg-[#4E341A]">
                   <MapPin size={15} />
                 </span>
-                <span>HITEC City, Hyderabad, India</span>
+                <span>Malkam Cheruvu, Heritage Rocks, Hyderabad</span>
               </div>
             </div>
           </div>
