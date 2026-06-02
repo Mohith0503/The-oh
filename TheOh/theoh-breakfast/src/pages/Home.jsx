@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Flame, Check, ShieldCheck, Zap, Bike } from 'lucide-react';
 import { Hero } from '../components/home/Hero';
 import { api } from '../services/api';
+import { COMBOS } from '../data';
 
 export function Home() {
   const navigate = useNavigate();
@@ -41,9 +42,12 @@ export function Home() {
         const menuData = await api.fetchMenu();
         if (active && menuData && menuData.combos) {
           setCombos(menuData.combos);
+        } else if (active) {
+          setCombos(COMBOS);
         }
       } catch (err) {
         console.error("Failed to load combos dynamically:", err);
+        if (active) setCombos(COMBOS); // Use static fallback on error
       } finally {
         if (active) setLoadingCombos(false);
       }
