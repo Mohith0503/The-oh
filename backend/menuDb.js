@@ -56,7 +56,7 @@ async function saveMenu(menu) {
 // Add menu item
 async function addMenuItem(itemData) {
   const menu = await getMenu();
-  const { type, name, price, tags, desc, image, category } = itemData;
+  const { type, name, price, tags, desc, image, category, ingredients, nutrition, prepTime } = itemData;
   
   if (!name || typeof price !== 'number') {
     throw new Error('Name and price are required');
@@ -77,7 +77,16 @@ async function addMenuItem(itemData) {
     }
     id = `b${nextNum}`;
 
-    const newBase = { id, name, price, tags: tags || [], desc: desc || '', image: image || '', inStock };
+    const newBase = { 
+      id, name, price, 
+      tags: tags || [], 
+      desc: desc || '', 
+      image: image || '', 
+      inStock,
+      ingredients: ingredients || [],
+      nutrition: nutrition || null,
+      prepTime: prepTime || ''
+    };
     menu.bases.push(newBase);
     await saveMenu(menu);
     return newBase;
@@ -153,7 +162,10 @@ async function updateMenuItem(id, itemData) {
       tags: itemData.tags !== undefined ? itemData.tags : menu.bases[baseIndex].tags,
       desc: itemData.desc !== undefined ? itemData.desc : menu.bases[baseIndex].desc,
       image: itemData.image !== undefined ? itemData.image : menu.bases[baseIndex].image,
-      inStock: itemData.inStock !== undefined ? itemData.inStock : menu.bases[baseIndex].inStock
+      inStock: itemData.inStock !== undefined ? itemData.inStock : menu.bases[baseIndex].inStock,
+      ingredients: itemData.ingredients !== undefined ? itemData.ingredients : menu.bases[baseIndex].ingredients,
+      nutrition: itemData.nutrition !== undefined ? itemData.nutrition : menu.bases[baseIndex].nutrition,
+      prepTime: itemData.prepTime !== undefined ? itemData.prepTime : menu.bases[baseIndex].prepTime
     };
     menu.bases[baseIndex] = updated;
     await saveMenu(menu);

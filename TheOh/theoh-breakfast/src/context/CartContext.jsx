@@ -4,7 +4,7 @@ import { useLocalStorage } from '../hooks/useLocalStorage';
 const CartContext = createContext();
 
 export function CartProvider({ children }) {
-  const [cartItems, setCartItems] = useLocalStorage('theoh_cart', []);
+  const [cartItems, setCartItems] = useLocalStorage('nutribowl_cart', []);
   const [isCartOpen, setIsCartOpen] = useState(false);
   
   // Customization builder state for active configuration
@@ -41,6 +41,7 @@ export function CartProvider({ children }) {
 
     const newCartItem = {
       id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+      type: 'regular',
       base: selectedBase,
       addons: [...selectedAddons],
       qty: builderQty,
@@ -60,6 +61,19 @@ export function CartProvider({ children }) {
     setCartItems((prev) => prev.filter((item) => item.id !== id));
   };
 
+  const addSubscriptionToCart = (plan, selectedMeal, startDate, qty = 1) => {
+    const newCartItem = {
+      id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+      type: 'subscription',
+      plan,
+      meal: selectedMeal,
+      startDate,
+      qty,
+    };
+    setCartItems((prev) => [...prev, newCartItem]);
+    return true;
+  };
+
   const changeCartItemQty = (id, delta) => {
     setCartItems((prev) =>
       prev.map((item) =>
@@ -74,8 +88,11 @@ export function CartProvider({ children }) {
 
   // Derived states
   const totalCartPrice = cartItems.reduce((sum, item) => {
-    const addonsCost = item.addons.reduce((aSum, a) => aSum + a.price, 0);
-    return sum + (item.base.price + addonsCost) * item.qty;
+    if (item.type === 'subscription') {
+      return sum + (item.plan.discountedPrice * item.qty);
+    }
+    const addonsCost = item.addons ? item.addons.reduce((aSum, a) => aSum + a.price, 0) : 0;
+    return sum + (item.base?.price + addonsCost) * item.qty;
   }, 0);
 
   const totalCartItems = cartItems.reduce((sum, item) => sum + item.qty, 0);
@@ -101,6 +118,7 @@ export function CartProvider({ children }) {
         toggleAddon,
         updateBuilderQty,
         addToCart,
+        addSubscriptionToCart,
         removeFromCart,
         changeCartItemQty,
         clearCart,

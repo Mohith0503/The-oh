@@ -11,14 +11,14 @@ export function MenuCard({ item, selected, onClick, showDesc = false }) {
       onClick={isOutOfStock ? null : onClick}
       className={`group rounded-3xl overflow-hidden border-2 bg-white transition-all duration-300 relative shadow-premium flex flex-col justify-between select-none ${
         isOutOfStock
-          ? 'border-theoh-border/40 opacity-55 cursor-not-allowed'
+          ? 'border-nutribowl-border/40 opacity-55 cursor-not-allowed'
           : selected 
-            ? 'border-theoh-orange ring-4 ring-theoh-lightOrange translate-y-[-2px] cursor-pointer' 
-            : 'border-theoh-border/60 hover:border-theoh-orange/45 hover:shadow-premium-hover hover:translate-y-[-2px] cursor-pointer'
+            ? 'border-nutribowl-orange ring-4 ring-nutribowl-lightOrange translate-y-[-2px] cursor-pointer' 
+            : 'border-nutribowl-border/60 hover:border-nutribowl-orange/45 hover:shadow-premium-hover hover:translate-y-[-2px] cursor-pointer'
       }`}
     >
       {/* Product Image */}
-      <div className="relative overflow-hidden bg-theoh-beige">
+      <div className="relative overflow-hidden bg-nutribowl-beige">
         <div 
           className="h-44 w-full bg-cover bg-center transition-transform duration-500 ease-out group-hover:scale-105"
           style={{ backgroundImage: `url(${item.image || 'https://images.unsplash.com/photo-1517673132405-a56a62b18caf?w=300&q=80'})` }}
@@ -35,8 +35,8 @@ export function MenuCard({ item, selected, onClick, showDesc = false }) {
 
         {/* Checked status tick overlay */}
         {!isOutOfStock && selected && (
-          <div className="absolute inset-0 bg-theoh-orange/10 backdrop-blur-[1px] flex items-center justify-center transition-all duration-300">
-            <span className="p-2.5 rounded-full bg-theoh-orange text-white shadow-lg animate-scale-up">
+          <div className="absolute inset-0 bg-nutribowl-orange/10 backdrop-blur-[1px] flex items-center justify-center transition-all duration-300">
+            <span className="p-2.5 rounded-full bg-nutribowl-orange text-white shadow-lg animate-scale-up">
               <Check size={20} strokeWidth={3} />
             </span>
           </div>
@@ -64,22 +64,22 @@ export function MenuCard({ item, selected, onClick, showDesc = false }) {
           )}
 
           {/* Name & Pricing */}
-          <h4 className="text-sm sm:text-base font-extrabold text-theoh-brown group-hover:text-theoh-orange transition-colors mb-1.5 leading-snug">
+          <h4 className="text-sm sm:text-base font-extrabold text-nutribowl-brown group-hover:text-nutribowl-orange transition-colors mb-1.5 leading-snug">
             {item.name}
           </h4>
 
           {/* Description (for Oats & Breads base items) */}
           {showDesc && item.desc && (
-            <p className="text-xs text-theoh-muted leading-relaxed line-clamp-2">
+            <p className="text-xs text-nutribowl-muted leading-relaxed line-clamp-2">
               {item.desc}
             </p>
           )}
         </div>
 
         {/* Pricing details */}
-        <div className="flex items-center justify-between border-t border-theoh-border/30 pt-3 mt-1.5">
-          <span className="text-[11px] font-bold text-theoh-muted tracking-wider uppercase">Price</span>
-          <span className="text-base font-black text-theoh-orange">{formatINR(item.price)}</span>
+        <div className="flex items-center justify-between border-t border-nutribowl-border/30 pt-3 mt-1.5">
+          <span className="text-[11px] font-bold text-nutribowl-muted tracking-wider uppercase">Price</span>
+          <span className="text-base font-black text-nutribowl-orange">{formatINR(item.price)}</span>
         </div>
 
       </div>

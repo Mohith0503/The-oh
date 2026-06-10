@@ -7,7 +7,7 @@ import { FloatingCart } from '../components/cart/FloatingCart';
 
 export function MainLayout() {
   return (
-    <div className="flex flex-col min-h-screen bg-theoh-beige font-sans">
+    <div className="flex flex-col min-h-screen bg-nutribowl-beige font-sans">
       {/* Global Header */}
       <Navbar />
 

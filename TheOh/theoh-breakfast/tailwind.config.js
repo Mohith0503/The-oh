@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        theoh: {
+        nutribowl: {
           cream: "#FFFDF9",
           beige: "#FBF7F0",
           brown: "#5C3D20",

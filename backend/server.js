@@ -11,7 +11,7 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const JWT_SECRET = process.env.JWT_SECRET || 'super_secret_theoh_key_987654';
+const JWT_SECRET = process.env.JWT_SECRET || 'super_secret_nutribowl_key_987654';
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123';
 
 app.use(cors());
@@ -264,5 +264,5 @@ io.on('connection', (socket) => {
 });
 
 httpServer.listen(PORT, '0.0.0.0', () => {
-  console.log(`THEOH Breakfast Server running on port ${PORT}`);
+  console.log(`Nutribowl Breakfast Server running on port ${PORT}`);
 });

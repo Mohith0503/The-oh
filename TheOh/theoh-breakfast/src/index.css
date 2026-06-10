@@ -7,7 +7,7 @@
     margin: 0;
     height: 100%;
     overflow-x: hidden;
-    @apply antialiased bg-theoh-beige text-theoh-text;
+    @apply antialiased bg-nutribowl-beige text-nutribowl-text;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 
@@ -17,10 +17,10 @@
     height: 8px;
   }
   ::-webkit-scrollbar-track {
-    @apply bg-theoh-beige;
+    @apply bg-nutribowl-beige;
   }
   ::-webkit-scrollbar-thumb {
-    @apply bg-theoh-border rounded-full hover:bg-theoh-muted/40 transition-colors;
+    @apply bg-nutribowl-border rounded-full hover:bg-nutribowl-muted/40 transition-colors;
   }
 }
 

@@ -6,17 +6,17 @@ import { STORY_BG } from '../data';
 export function About() {
   const values = [
     { 
-      icon: <Leaf size={28} className="text-theoh-green" />, 
+      icon: <Leaf size={28} className="text-nutribowl-green" />, 
       title: "Whole Ingredients", 
       desc: "We focus strictly on rolled organic grains, raw cold-pressed fats, and fresh hand-cut seasonal fruits." 
     },
     { 
-      icon: <ShieldAlert size={28} className="text-theoh-orange" />, 
+      icon: <ShieldAlert size={28} className="text-nutribowl-orange" />, 
       title: "No Preservatives", 
       desc: "Our bowls are made fresh from scratch every single morning. We never use artificial syrups or thickeners." 
     },
     { 
-      icon: <Award size={28} className="text-theoh-softOrange" />, 
+      icon: <Award size={28} className="text-nutribowl-softOrange" />, 
       title: "Morning Prep Only", 
       desc: "Our kitchens run in the quiet hours of dawn. What you eat was sourced and prepared just hours before." 
     },
@@ -28,7 +28,7 @@ export function About() {
   ];
 
   return (
-    <div className="bg-theoh-beige pb-20">
+    <div className="bg-nutribowl-beige pb-20">
       {/* Narrative Page Header */}
       <section className="relative overflow-hidden min-h-[40vh] flex items-center justify-center py-20 px-4 text-center">
         <div 
@@ -52,7 +52,7 @@ export function About() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-base sm:text-lg text-[#FFD89E] font-medium uppercase tracking-wider"
           >
-            ఓట్స్ హాబిట్ — Oat's Habit • Born in Hyderabad
+            Nutribowl — Oat's Habit • Born in Hyderabad
           </motion.p>
         </div>
       </section>
@@ -63,13 +63,13 @@ export function About() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="bg-theoh-cream p-8 sm:p-12 rounded-3xl border border-theoh-border shadow-premium text-theoh-text leading-relaxed"
+          className="bg-nutribowl-cream p-8 sm:p-12 rounded-3xl border border-nutribowl-border shadow-premium text-nutribowl-text leading-relaxed"
         >
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-theoh-brown mb-6">
-            What is THEOH?
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-nutribowl-brown mb-6">
+            What is Nutribowl?
           </h2>
           <p className="mb-6 text-[#4A3520] text-sm sm:text-base">
-            THEOH started as a small, passionate kitchen experiment in Hyderabad. We noticed a recurring problem: busy professionals, fitness enthusiasts, and health-conscious eaters wanted a clean, nutrient-dense breakfast but lacked the time to wash fruits, shell nuts, and prepare rolled oatmeal at 6:30 AM.
+            Nutribowl started as a small, passionate kitchen experiment in Hyderabad. We noticed a recurring problem: busy professionals, fitness enthusiasts, and health-conscious eaters wanted a clean, nutrient-dense breakfast but lacked the time to wash fruits, shell nuts, and prepare rolled oatmeal at 6:30 AM.
           </p>
           <p className="mb-6 text-[#4A3520] text-sm sm:text-base">
             We believe that what you eat in the first hour of your morning outlines the trajectory of your entire day. Our concept is straightforward: we source 100% organic rolled oats, prepare delicious slow-soaked mixtures, source direct-from-farm fresh berries and seasonal mangoes, make our almond and peanut spreads in-house, and deliver it exactly as you build it.
@@ -83,10 +83,10 @@ export function About() {
       {/* Core Values grid */}
       <section className="max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-xs font-bold uppercase tracking-widest text-theoh-orange bg-theoh-lightOrange px-3.5 py-1.5 rounded-full">
+          <span className="text-xs font-bold uppercase tracking-widest text-nutribowl-orange bg-nutribowl-lightOrange px-3.5 py-1.5 rounded-full">
             Our Foundations
           </span>
-          <h2 className="text-3xl font-extrabold text-theoh-brown mt-4">
+          <h2 className="text-3xl font-extrabold text-nutribowl-brown mt-4">
             Principles We Stand By
           </h2>
         </div>
@@ -99,13 +99,13 @@ export function About() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
               key={val.title}
-              className="bg-theoh-cream p-8 rounded-2xl border border-theoh-border/60 shadow-premium hover:-translate-y-1 transition-all duration-300 text-center"
+              className="bg-nutribowl-cream p-8 rounded-2xl border border-nutribowl-border/60 shadow-premium hover:-translate-y-1 transition-all duration-300 text-center"
             >
               <div className="p-4 rounded-full bg-white shadow-sm inline-flex items-center justify-center mb-6">
                 {val.icon}
               </div>
-              <h3 className="text-base font-bold text-theoh-brown mb-2">{val.title}</h3>
-              <p className="text-theoh-muted text-xs leading-relaxed">{val.desc}</p>
+              <h3 className="text-base font-bold text-nutribowl-brown mb-2">{val.title}</h3>
+              <p className="text-nutribowl-muted text-xs leading-relaxed">{val.desc}</p>
             </motion.div>
           ))}
         </div>

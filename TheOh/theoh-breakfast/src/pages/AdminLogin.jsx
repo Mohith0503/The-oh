@@ -28,16 +28,16 @@ export function AdminLogin({ onLoginSuccess }) {
   };
 
   return (
-    <div className="min-h-screen bg-theoh-beige flex items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8 bg-white/70 backdrop-blur-md p-8 sm:p-10 rounded-[32px] border border-theoh-border/60 shadow-xl">
+    <div className="min-h-screen bg-nutribowl-beige flex items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8 bg-white/70 backdrop-blur-md p-8 sm:p-10 rounded-[32px] border border-nutribowl-border/60 shadow-xl">
         <div className="text-center">
           <div className="mx-auto h-16 w-16 bg-[#E8F5E9] rounded-full flex items-center justify-center mb-4">
             <ShieldAlert className="h-8 w-8 text-[#004700]" />
           </div>
-          <h2 className="text-3xl font-black text-theoh-brown tracking-tight">
-            THEOH ADMIN
+          <h2 className="text-3xl font-black text-nutribowl-brown tracking-tight">
+            Nutribowl ADMIN
           </h2>
-          <p className="mt-2 text-sm text-theoh-muted font-medium">
+          <p className="mt-2 text-sm text-nutribowl-muted font-medium">
             Please enter your administrator password to proceed to the dashboard.
           </p>
         </div>
@@ -50,11 +50,11 @@ export function AdminLogin({ onLoginSuccess }) {
           )}
 
           <div className="space-y-1.5">
-            <label htmlFor="password" className="text-xs font-bold text-theoh-brown uppercase tracking-wider block">
+            <label htmlFor="password" className="text-xs font-bold text-nutribowl-brown uppercase tracking-wider block">
               Admin Password
             </label>
             <div className="relative">
-              <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-theoh-muted">
+              <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-nutribowl-muted">
                 <KeyRound size={16} />
               </span>
               <input
@@ -64,7 +64,7 @@ export function AdminLogin({ onLoginSuccess }) {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
                 disabled={loading}
-                className="w-full pl-10 pr-4 py-3.5 rounded-2xl border border-theoh-border bg-white text-theoh-text placeholder-theoh-muted/65 outline-none focus:border-[#004700] focus:ring-2 focus:ring-[#E8F5E9] transition-all text-sm disabled:opacity-50"
+                className="w-full pl-10 pr-4 py-3.5 rounded-2xl border border-nutribowl-border bg-white text-nutribowl-text placeholder-nutribowl-muted/65 outline-none focus:border-[#004700] focus:ring-2 focus:ring-[#E8F5E9] transition-all text-sm disabled:opacity-50"
               />
             </div>
           </div>

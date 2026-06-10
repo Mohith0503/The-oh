@@ -8,7 +8,7 @@ async function apiRequest(endpoint, method = 'GET', body = null, requireAuth = f
   };
 
   if (requireAuth) {
-    const token = localStorage.getItem('theoh_admin_token');
+    const token = localStorage.getItem('nutribowl_admin_token');
     if (token) {
       headers['Authorization'] = `Bearer ${token}`;
     }
@@ -48,7 +48,7 @@ export const api = {
   adminLogin: async (password) => {
     const data = await apiRequest('/auth/login', 'POST', { password });
     if (data.token) {
-      localStorage.setItem('theoh_admin_token', data.token);
+      localStorage.setItem('nutribowl_admin_token', data.token);
     }
     return data;
   },
@@ -84,10 +84,10 @@ export const api = {
   },
 
   logout: () => {
-    localStorage.removeItem('theoh_admin_token');
+    localStorage.removeItem('nutribowl_admin_token');
   },
 
   isAuthenticated: () => {
-    return !!localStorage.getItem('theoh_admin_token');
+    return !!localStorage.getItem('nutribowl_admin_token');
   }
 };

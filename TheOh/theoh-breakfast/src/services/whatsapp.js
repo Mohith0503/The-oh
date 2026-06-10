@@ -9,7 +9,7 @@ import { WHATSAPP_NUMBER } from '../data';
 export function placeOrderWhatsApp(cartItems, customerInfo, totalCartPrice, orderId) {
   if (!cartItems || cartItems.length === 0) return;
 
-  const header = `🌿 *THEOH (ఓట్స్ హాబిట్)* 🌿\n_Fresh Breakfast Order_ *(${orderId ? orderId : 'New'})*\n━━━━━━━━━━━━━━━━━━━━\n\n`;
+  const header = `🌿 *Nutribowl (Nutribowl)* 🌿\n_Fresh Breakfast Order_ *(${orderId ? orderId : 'New'})*\n━━━━━━━━━━━━━━━━━━━━\n\n`;
   
   const customerDetails = `👤 *CUSTOMER DETAILS*\n` +
     `• *Name:* ${customerInfo.name}\n` +
@@ -21,13 +21,18 @@ export function placeOrderWhatsApp(cartItems, customerInfo, totalCartPrice, orde
 
   const orderHeader = `🛒 *YOUR ORDER*\n`;
   const orderLines = cartItems.map((item, idx) => {
-    const addonList = item.addons.length > 0 
-      ? item.addons.map(a => `   └ 🔸 ${a.name} (+₹${a.price})`).join("\n") 
+    if (item.type === 'subscription' || item.plan) {
+      return `*${idx + 1}. [SUBSCRIPTION] ${item.planName || item.plan?.name}* (x${item.qty})\n   └ 🔸 Meal: ${item.meal}\n   └ 🔸 Starts: ${new Date(item.startDate).toLocaleDateString()}\n   *Item Total:* ₹${(item.price || item.plan?.discountedPrice) * item.qty}\n`;
+    }
+
+    const itemAddons = item.addons || [];
+    const addonList = itemAddons.length > 0 
+      ? itemAddons.map(a => `   └ 🔸 ${a.name} (+₹${a.price})`).join("\n") 
       : "   └ 🔸 No add-ons";
       
-    const itemPrice = (item.base.price + item.addons.reduce((sum, a) => sum + a.price, 0)) * item.qty;
+    const itemPrice = ((item.base?.price || 0) + itemAddons.reduce((sum, a) => sum + a.price, 0)) * item.qty;
     
-    return `*${idx + 1}. ${item.base.name}* (x${item.qty})\n${addonList}\n   *Item Total:* ₹${itemPrice}\n`;
+    return `*${idx + 1}. ${item.base?.name}* (x${item.qty})\n${addonList}\n   *Item Total:* ₹${itemPrice}\n`;
   }).join("\n");
 
   const footer = `\n━━━━━━━━━━━━━━━━━━━━\n` +

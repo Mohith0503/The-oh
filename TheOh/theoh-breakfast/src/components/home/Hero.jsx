@@ -18,13 +18,13 @@ export function Hero() {
     const videoEl = document.getElementById('hero-video');
     if (videoEl) {
       videoEl.currentTime = 0;
-      videoEl.play().catch(err => console.log("Video replay error:", err));
+      videoEl.play().catch(() => {});
     }
   };
 
   return (
     <section
-      className={`relative overflow-hidden min-h-[92vh] flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 transition-colors duration-1000 ease-in-out ${isVideoEnded ? 'bg-[#EAE3DC]' : 'bg-theoh-beige'
+      className={`relative overflow-hidden min-h-[92vh] flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 transition-colors duration-1000 ease-in-out ${isVideoEnded ? 'bg-[#EAE3DC]' : 'bg-nutribowl-beige'
         }`}
     >
 
@@ -46,12 +46,12 @@ export function Hero() {
       <motion.div
         animate={{ opacity: isVideoEnded ? 0 : 0.55 }}
         transition={{ duration: 1.2, ease: "easeInOut" }}
-        className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/55 to-theoh-brown/85 z-10 pointer-events-none"
+        className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/55 to-nutribowl-brown/85 z-10 pointer-events-none"
       />
       <motion.div
         animate={{ opacity: isVideoEnded ? 0 : 0.15 }}
         transition={{ duration: 1.2, ease: "easeInOut" }}
-        className="absolute inset-0 bg-gradient-to-r from-theoh-orange/15 via-transparent to-[#000000]/15 z-10 pointer-events-none"
+        className="absolute inset-0 bg-gradient-to-r from-nutribowl-orange/15 via-transparent to-[#000000]/15 z-10 pointer-events-none"
       />
 
       {/* Decorative floating organic light particles (only active when video is playing) */}
@@ -62,13 +62,13 @@ export function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.15 }}
               exit={{ opacity: 0 }}
-              className="absolute top-1/4 left-1/3 w-72 h-72 bg-theoh-green/10 rounded-full blur-3xl z-10 pointer-events-none"
+              className="absolute top-1/4 left-1/3 w-72 h-72 bg-nutribowl-green/10 rounded-full blur-3xl z-10 pointer-events-none"
             />
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.15 }}
               exit={{ opacity: 0 }}
-              className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-theoh-orange/10 rounded-full blur-3xl z-10 pointer-events-none"
+              className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-nutribowl-orange/10 rounded-full blur-3xl z-10 pointer-events-none"
             />
           </>
         )}
@@ -85,12 +85,12 @@ export function Hero() {
           <div className="flex items-center gap-2">
             <Leaf size={24} className="text-white" />
             <span className="text-xs font-black uppercase tracking-[0.2em] bg-[#F5ECE3]/30 border border-[#EADBCC]/30 px-3 py-1 rounded-full">
-              THEOH <span className="text-theoh-orange font-black">·</span> Breakfast Club
+              Nutribowl <span className="text-nutribowl-orange font-black">·</span> Breakfast Club
             </span>
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-snug">
             Start Your Morning <br />
-            <span className="text-theoh-orange">The Right Way</span>
+            <span className="text-nutribowl-orange">The Right Way</span>
           </h1>
           <p className="text-sm sm:text-base text-white/80 max-w-md">
             Watch premium oats, farm-picked berries, and natural peanut spreads fall together in perfect harmony.
@@ -98,7 +98,7 @@ export function Hero() {
           <div className="flex flex-col sm:flex-row gap-4 mt-4">
             <Link
               to="/menu"
-              className="flex items-center justify-center gap-2 bg-theoh-orange hover:bg-[#B45014] text-white font-bold py-3 px-6 rounded-full"
+              className="flex items-center justify-center gap-2 bg-nutribowl-orange hover:bg-[#B45014] text-white font-bold py-3 px-6 rounded-full"
             >
               <span>Order Now</span>
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
@@ -107,7 +107,7 @@ export function Hero() {
               to="/menu"
               className="flex items-center justify-center gap-2 bg-[#F5ECE3] hover:bg-[#EADBCC] text-[#5C3D20] font-bold py-3 px-6 rounded-full"
             >
-              <Sparkles size={16} className="text-theoh-orange" />
+              <Sparkles size={16} className="text-nutribowl-orange" />
               <span>Explore Ingredients</span>
             </Link>
           </div>
@@ -122,7 +122,7 @@ export function Hero() {
           {isVideoEnded && (
             <button
               onClick={handleReplay}
-              className="mt-2 flex items-center gap-1 text-theoh-orange hover:text-[#B45014] transition-colors border border-theoh-orange/20 hover:border-theoh-orange/60 bg-white px-3 py-1 rounded-full text-xs font-bold w-fit"
+              className="mt-2 flex items-center gap-1 text-nutribowl-orange hover:text-[#B45014] transition-colors border border-nutribowl-orange/20 hover:border-nutribowl-orange/60 bg-white px-3 py-1 rounded-full text-xs font-bold w-fit"
             >
               <RotateCcw size={11} />
               <span>Replay Video</span>

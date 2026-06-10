@@ -82,17 +82,31 @@ export function CartDrawer() {
 
     try {
       const orderData = {
-        items: cartItems.map(item => ({
-          base: {
-            name: item.base.name,
-            price: item.base.price
-          },
-          addons: item.addons.map(a => ({
-            name: a.name,
-            price: a.price
-          })),
-          qty: item.qty
-        })),
+        items: cartItems.map(item => {
+          if (item.type === 'subscription') {
+            return {
+              type: 'subscription',
+              planId: item.plan.id,
+              planName: item.plan.name,
+              meal: item.meal,
+              startDate: item.startDate,
+              price: item.plan.discountedPrice,
+              qty: item.qty
+            };
+          }
+          return {
+            type: 'regular',
+            base: {
+              name: item.base.name,
+              price: item.base.price
+            },
+            addons: item.addons ? item.addons.map(a => ({
+              name: a.name,
+              price: a.price
+            })) : [],
+            qty: item.qty
+          };
+        }),
         customer: {
           name: formData.name,
           phone: formData.phone,
@@ -167,23 +181,23 @@ export function CartDrawer() {
                   Order Confirmed!
                 </h2>
                 
-                <div className="bg-theoh-beige/50 border border-theoh-border/40 p-4 rounded-2xl w-full my-6 text-left space-y-2">
-                  <div className="flex justify-between border-b border-theoh-border/20 pb-2">
-                    <span className="font-bold text-theoh-muted text-xs uppercase">Order ID</span>
-                    <span className="font-black text-theoh-brown text-sm">{placedOrder.id}</span>
+                <div className="bg-nutribowl-beige/50 border border-nutribowl-border/40 p-4 rounded-2xl w-full my-6 text-left space-y-2">
+                  <div className="flex justify-between border-b border-nutribowl-border/20 pb-2">
+                    <span className="font-bold text-nutribowl-muted text-xs uppercase">Order ID</span>
+                    <span className="font-black text-nutribowl-brown text-sm">{placedOrder.id}</span>
                   </div>
-                  <div className="flex justify-between border-b border-theoh-border/20 pb-2">
-                    <span className="font-bold text-theoh-muted text-xs uppercase">Delivery Time</span>
-                    <span className="font-bold text-theoh-brown text-xs">{placedOrder.customer.timeSlot}</span>
+                  <div className="flex justify-between border-b border-nutribowl-border/20 pb-2">
+                    <span className="font-bold text-nutribowl-muted text-xs uppercase">Delivery Time</span>
+                    <span className="font-bold text-nutribowl-brown text-xs">{placedOrder.customer.timeSlot}</span>
                   </div>
                   <div className="flex justify-between pt-1">
-                    <span className="font-bold text-theoh-muted text-xs uppercase">Grand Total</span>
+                    <span className="font-bold text-nutribowl-muted text-xs uppercase">Grand Total</span>
                     <span className="font-black text-[#004700] text-sm">{formatINR(placedOrder.totalPrice)}</span>
                   </div>
                 </div>
 
-                <p className="text-sm text-theoh-muted leading-relaxed mb-8 px-4 font-medium">
-                  Thank you for choosing THEOH, <span className="font-bold text-theoh-brown">{placedOrder.customer.name}</span>! We have saved your order in our database. Click below to confirm via WhatsApp so we can coordinate your fresh morning delivery.
+                <p className="text-sm text-nutribowl-muted leading-relaxed mb-8 px-4 font-medium">
+                  Thank you for choosing Nutribowl, <span className="font-bold text-nutribowl-brown">{placedOrder.customer.name}</span>! We have saved your order in our database. Click below to confirm via WhatsApp so we can coordinate your fresh morning delivery.
                 </p>
 
                 <div className="w-full space-y-3">
@@ -204,7 +218,7 @@ export function CartDrawer() {
                       setPlacedOrder(null);
                       setCheckoutMode(false);
                     }}
-                    className="w-full bg-theoh-beige hover:bg-theoh-border/40 text-theoh-brown py-3 rounded-2xl font-bold transition-all"
+                    className="w-full bg-nutribowl-beige hover:bg-nutribowl-border/40 text-nutribowl-brown py-3 rounded-2xl font-bold transition-all"
                   >
                     Done
                   </button>
@@ -231,11 +245,11 @@ export function CartDrawer() {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'tween', duration: 0.35 }}
-            className="fixed right-0 top-0 bottom-0 w-full max-w-lg bg-theoh-beige z-50 shadow-2xl flex flex-col"
+            className="fixed right-0 top-0 bottom-0 w-full max-w-lg bg-nutribowl-beige z-50 shadow-2xl flex flex-col"
           >
             {/* Header */}
-            <div className="p-4 sm:p-5 bg-white border-b border-theoh-border/60 flex items-center justify-between">
-              <div className="flex items-center gap-2 text-theoh-brown">
+            <div className="p-4 sm:p-5 bg-white border-b border-nutribowl-border/60 flex items-center justify-between">
+              <div className="flex items-center gap-2 text-nutribowl-brown">
                 <ShoppingBag
                   size={20}
                   className="text-[#004700]"
@@ -250,7 +264,7 @@ export function CartDrawer() {
                   setIsCartOpen(false);
                   setCheckoutMode(false);
                 }}
-                className="p-1.5 rounded-full hover:bg-theoh-beige transition-all"
+                className="p-1.5 rounded-full hover:bg-nutribowl-beige transition-all"
               >
                 <X size={20} />
               </button>
@@ -267,11 +281,11 @@ export function CartDrawer() {
                     />
                   </div>
 
-                  <h3 className="mt-4 font-black text-lg text-theoh-brown">
+                  <h3 className="mt-4 font-black text-lg text-nutribowl-brown">
                     Your cart is empty
                   </h3>
 
-                  <p className="text-sm text-theoh-muted mt-2 max-w-[250px] leading-relaxed">
+                  <p className="text-sm text-nutribowl-muted mt-2 max-w-[250px] leading-relaxed">
                     Build your healthy breakfast bowl with oats,
                     fruits, nuts, and seeds.
                   </p>
@@ -288,12 +302,47 @@ export function CartDrawer() {
                   {!checkoutMode ? (
                     <div className="space-y-3">
                       {cartItems.map((item) => {
-                        const basePrice = item.base.price;
+                        if (item.type === 'subscription') {
+                          return (
+                            <div key={item.id} className="bg-white p-4 rounded-2xl border border-[#004700]/30 shadow-sm flex flex-col gap-3 relative overflow-hidden">
+                              <div className="absolute top-0 left-0 w-1 h-full bg-[#004700]" />
+                              <div className="flex justify-between items-start">
+                                <div>
+                                  <div className="flex items-center gap-2 mb-1">
+                                    <h4 className="font-black text-nutribowl-brown text-base leading-tight">
+                                      {item.plan.name}
+                                    </h4>
+                                    <span className="bg-[#E8F5E9] text-[#004700] text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
+                                      Subscription
+                                    </span>
+                                  </div>
+                                  <p className="text-sm text-nutribowl-muted font-medium">Meal: <span className="text-nutribowl-brown">{item.meal}</span></p>
+                                  <p className="text-xs text-nutribowl-muted mt-0.5">Starts: {new Date(item.startDate).toLocaleDateString()}</p>
+                                </div>
+                                <button onClick={() => removeFromCart(item.id)} className="text-red-400 hover:text-red-600 transition-all bg-red-50 p-1.5 rounded-lg">
+                                  <Trash2 size={16} />
+                                </button>
+                              </div>
+                              <div className="flex justify-between items-end border-t border-nutribowl-border/20 pt-3 mt-1">
+                                <div className="flex flex-col">
+                                  <span className="text-[10px] text-green-600 font-bold uppercase tracking-wider mb-1">Save {formatINR(item.plan.savings * item.qty)}</span>
+                                  <QuantitySelector quantity={item.qty} onChange={(newQty) => changeCartItemQty(item.id, newQty - item.qty)} size="sm" />
+                                </div>
+                                <div className="text-right">
+                                  <div className="text-xs text-nutribowl-muted line-through mb-0.5">{formatINR(item.plan.originalPrice * item.qty)}</div>
+                                  <span className="font-black text-[#004700] text-xl">{formatINR(item.plan.discountedPrice * item.qty)}</span>
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        }
 
-                        const addonsPrice = item.addons.reduce(
+                        const basePrice = item.base?.price || 0;
+
+                        const addonsPrice = item.addons ? item.addons.reduce(
                           (sum, addon) => sum + addon.price,
                           0
-                        );
+                        ) : 0;
 
                         const itemPrice =
                           (basePrice + addonsPrice) * item.qty;
@@ -301,7 +350,7 @@ export function CartDrawer() {
                         return (
                           <div
                             key={item.id}
-                            className="bg-white p-4 rounded-2xl border border-theoh-border/50 shadow-sm flex gap-4"
+                            className="bg-white p-4 rounded-2xl border border-nutribowl-border/50 shadow-sm flex gap-4"
                           >
                             {/* Image */}
                             <div
@@ -315,19 +364,19 @@ export function CartDrawer() {
                             <div className="flex-1 min-w-0">
                               <div className="flex justify-between gap-2">
                                 <div>
-                                  <h4 className="font-black text-theoh-brown text-base leading-tight">
+                                  <h4 className="font-black text-nutribowl-brown text-base leading-tight">
                                     {item.base.name}
                                   </h4>
 
-                                  {item.addons.length > 0 ? (
-                                    <p className="text-sm text-theoh-muted mt-1 leading-relaxed">
+                                  {item.addons && item.addons.length > 0 ? (
+                                    <p className="text-sm text-nutribowl-muted mt-1 leading-relaxed">
                                       +{' '}
                                       {item.addons
                                         .map((a) => a.name)
                                         .join(', ')}
                                     </p>
                                   ) : (
-                                    <p className="text-xs uppercase tracking-wide text-theoh-muted mt-1">
+                                    <p className="text-xs uppercase tracking-wide text-nutribowl-muted mt-1">
                                       No add-ons selected
                                     </p>
                                   )}
@@ -344,7 +393,7 @@ export function CartDrawer() {
                               </div>
 
                               {/* Bottom */}
-                              <div className="flex justify-between items-center mt-4 pt-4 border-t border-theoh-border/20">
+                              <div className="flex justify-between items-center mt-4 pt-4 border-t border-nutribowl-border/20">
                                 <QuantitySelector
                                   quantity={item.qty}
                                   onChange={(newQty) =>
@@ -376,6 +425,37 @@ export function CartDrawer() {
                         ← Back to Cart Items
                       </button>
 
+                      {/* Order Summary in Checkout Mode */}
+                      <div className="bg-white p-4 rounded-2xl border border-nutribowl-border/50 shadow-sm space-y-3">
+                        <h4 className="font-bold text-sm text-nutribowl-brown uppercase tracking-wider border-b border-nutribowl-border/20 pb-2">
+                          Order Summary
+                        </h4>
+                        {cartItems.map((item) => {
+                          const isSub = item.type === 'subscription';
+                          const title = isSub ? item.plan.name : item.base.name;
+                          const subtitle = isSub ? `Meal: ${item.meal}` : (item.addons?.length > 0 ? `+ ${item.addons.map(a => a.name).join(', ')}` : '');
+                          const price = isSub ? item.plan.discountedPrice * item.qty : (item.base.price + (item.addons ? item.addons.reduce((s, a) => s + a.price, 0) : 0)) * item.qty;
+                          
+                          return (
+                            <div key={item.id} className="flex justify-between items-start text-sm">
+                              <div>
+                                <p className="font-bold text-nutribowl-brown">
+                                  {title} <span className="text-nutribowl-muted ml-1">x{item.qty}</span>
+                                </p>
+                                {subtitle && (
+                                  <p className="text-xs text-nutribowl-muted mt-0.5 leading-tight pr-4">
+                                    {subtitle}
+                                  </p>
+                                )}
+                              </div>
+                              <span className="font-black text-[#004700] whitespace-nowrap">
+                                {formatINR(price)}
+                              </span>
+                            </div>
+                          );
+                        })}
+                      </div>
+
                       <CheckoutForm
                         formData={formData}
                         onChange={handleInputChange}
@@ -389,18 +469,18 @@ export function CartDrawer() {
 
             {/* Bottom Summary */}
             {cartItems.length > 0 && (
-              <div className="bg-white border-t border-theoh-border/40 p-4 space-y-3">
+              <div className="bg-white border-t border-nutribowl-border/40 p-4 space-y-3">
                 {/* Totals */}
                 <div className="space-y-2">
-                  <div className="flex justify-between text-sm text-theoh-muted">
+                  <div className="flex justify-between text-sm text-nutribowl-muted">
                     <span>Order Subtotal</span>
 
-                    <span className="font-semibold text-theoh-brown">
+                    <span className="font-semibold text-nutribowl-brown">
                       {formatINR(totalCartPrice)}
                     </span>
                   </div>
 
-                  <div className="flex justify-between text-sm text-theoh-muted">
+                  <div className="flex justify-between text-sm text-nutribowl-muted">
                     <span>Morning Delivery</span>
 
                     <span className="font-semibold text-[#004700]">
@@ -408,8 +488,8 @@ export function CartDrawer() {
                     </span>
                   </div>
 
-                  <div className="flex justify-between items-center pt-2 border-t border-theoh-border/20">
-                    <span className="font-black text-xl text-theoh-brown">
+                  <div className="flex justify-between items-center pt-2 border-t border-nutribowl-border/20">
+                    <span className="font-black text-xl text-nutribowl-brown">
                       Grand Total
                     </span>
 

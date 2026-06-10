@@ -1,5 +1,5 @@
 {
-  "name": "theoh-breakfast-backend",
+  "name": "nutribowl-breakfast-backend",
   "version": "1.0.0",
   "type": "module",
   "main": "server.js",
